@@ -33,9 +33,10 @@ class UserManager{
 
 	public function isUser($username,$pwd){
 			$username = mysql_real_escape_string($username);
+			$pwd = mysql_real_escape_string($pwd);
 		$rep = $this->bdd->query("SELECT * FROM users WHERE username = '$username'");
 		while ($donnees = $rep->fetch()) {
-			if($donnees['pwd']==$pwd){
+			if($donnees['CNE']==$pwd){
 				
 				return true;
 				break;
@@ -48,11 +49,10 @@ class UserManager{
 	public function delete(){} // use it for desactiver le compte
 	public function alter(){} // to change pwd
 
-	public function getn($name){
-		$rep = $this->bdd->query('SELECT * FROM users WHERE name = '.$name);
+	public function getn($CNE){
+		$rep = $this->bdd->query("SELECT name FROM users WHERE CNE = '$CNE'");
 		while ($donnees = $rep->fetch()) {
-			echo "Nom: ".$donnees['name']."<br /> Dex :".$donnees['dex']."<br /> STR :".$donnees['str']."<br />con".$donnees['con'];
-				# code...
+			echo $donnees['name'];
 			}	
 	}
 

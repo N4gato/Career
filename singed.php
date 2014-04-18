@@ -16,9 +16,13 @@ try {
 }
 
 	if (isset($_POST['submit'])) {
-		$logmanager = new UserManager('tuto','users');
+		$logmanager = new UserManager('tuto','users'); // log to the BD
 		$session = $logmanager->isUser($_POST['username'],$_POST['pwd']);
-		echo $session;
+		if ($session) {
+			# code...
+			$_SESSION['username'] = $_POST['username'];
+			$_SESSION['pwd'] = $_POST['pwd']; 
+		}
 	}
  ?>
 <!DOCTYPE html>
@@ -95,7 +99,7 @@ if ($session) {
 ?>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="profile.php">Nagato</a>
+						<a href="profile.php"><?php $logmanager->getn($_POST['pwd']); ?></a>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
