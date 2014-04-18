@@ -12,10 +12,14 @@ try {
 	spl_autoload_register('chargerClasse'); // On enregistre lafonction en autoload pour qu'elle soit appelée dès qu'oninstanciera une classe non déclarée.
 	
 } catch (Exception $e) {
-	echo "Erreuuur".$e->
-getMessage();
+	echo "Erreuuur".$e->getMessage();
 }
 
+	if (isset($_POST['submit'])) {
+		$logmanager = new UserManager('tuto','users');
+		$session = $logmanager->isUser($_POST['username'],$_POST['pwd']);
+		echo $session;
+	}
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,16 +89,41 @@ getMessage();
 						</li>
 					</li>
 				</ul>
-				<form class="navbar-form navbar-right" role="form" method="POST" action="singed.php">
-					<div class="form-group">
-						<input type="text" name="username" placeholder="Username" class="form-control"></div>
-					<div class="form-group">
-						<input type="password" name="pwd" placeholder="Password" class="form-control"></div>
-					<button type="submit" name="submit" class="btn btn-success">Sign in</button>
-				</form>
-
-				<!-- /.navbar-collapse -->
+<?php 
+if ($session) {
+	# code...
+?>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="profile.php">Nagato</a>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							Loged <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="profile.php">Profile</a>
+							</li>
+							<li>
+								<a href="#">Logout</a>
+							</li>
+							<li>
+								<a href="#">Change Password</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">Déactiver Mon Compte</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
 			</div>
+<?php
+}
+ ?>
+
+			<!-- /.navbar-collapse -->
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
