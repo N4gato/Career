@@ -72,7 +72,7 @@ session_start();
 						</li>
 					</li>
 				</ul>
-<?php 
+				<?php 
 	if (isset($_SESSION['username']) && isset($_SESSION['pwd'])) {
 		# code...
 ?>
@@ -114,15 +114,26 @@ session_start();
 					<input type="CNE" name="pwd" placeholder="Password" class="form-control"></div>
 				<button type="submit" name="submit" class="btn btn-success">Sign in</button>
 			</form>
-<?php } ?>
+			<?php } ?>
 			<!-- /.navbar-collapse -->
 		</div>
 
 		<!-- /.container-fluid -->
 	</nav>
-	<div>
-		<h1>Ici une image et qlq mote d'acuille</h1>
-	</div>
+	<article>
+		<div class="acc">
+			
+			<div class="subacc">
+<br /><br /><br /><br />
+				<div><h1><b>Wanna joind Us and Benifice From <br />our service ?</b><br /><br />
+<small>We offer the best cours ever had, betst <br />teacher never been. And only by<br /> a simple registration</small>
+				</h1></div>
+				<div></div>
+				
+			</div>
+		</div>
+
+	</article>
 
 </body>
 	<!-- Latest compiled and minified JavaScript -->
