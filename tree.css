@@ -15,3 +15,9 @@ body {
 #logo{
 	color: #5cb85c;
 }
+.right{
+	float: right;
+}
+div{
+	color: "white";
+}

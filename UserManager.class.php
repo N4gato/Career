@@ -56,6 +56,13 @@ class UserManager{
 			}	
 	}
 
+	public function getidd($CNE){
+		$rep = $this->bdd->query("SELECT id FROM users WHERE CNE = '$CNE'");
+		while($donnees = $rep->fetch()){};
+		return $donnees	;
+				
+	}
+
 	public function connection(){
 				try {
 					$this->bdd = new PDO('mysql:host=localhost;dbname='.$this->db,'root','9obi9aT/now*',array(PDO::ATTR_ERRMODE =>

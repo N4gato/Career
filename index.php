@@ -2,21 +2,8 @@
 // On démarre la session AVANT d'écrire du code HTML
 session_start();
 // On s'amuse à créer quelques variables de session dans $_SESSION
+?>
 
-try {
-	function chargerClasse($classe){
-
-	require $classe . '.class.php'; // On inclut la classecorrespondante au paramètre passé.
-	}
-
-	spl_autoload_register('chargerClasse'); // On enregistre lafonction en autoload pour qu'elle soit appelée dès qu'oninstanciera une classe non déclarée.
-	
-} catch (Exception $e) {
-	echo "Erreuuur".$e->
-getMessage();
-}
-
- ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,19 +72,57 @@ getMessage();
 						</li>
 					</li>
 				</ul>
-				<form class="navbar-form navbar-right" role="form" method="POST" action="singed.php">
-					<div class="form-group">
-						<input type="text" name="username" placeholder="Username" class="form-control"></div>
-					<div class="form-group">
-						<input type="password" name="pwd" placeholder="Password" class="form-control"></div>
-					<button type="submit" name="submit" class="btn btn-success">Sign in</button>
-				</form>
+<?php 
+	if (isset($_SESSION['username']) && isset($_SESSION['pwd'])) {
+		# code...
+?>
 
-				<!-- /.navbar-collapse -->
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="profile.php">
+							<?php echo $_SESSION['username'] ?></a>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							Loged <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="profile.php">Profile</a>
+							</li>
+							<li>
+								<a href="#">Logout</a>
+							</li>
+							<li>
+								<a href="#">Change Password</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">Déactiver Mon Compte</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
 			</div>
+			<?php
+}else{
+ ?>
+			<form class="navbar-form navbar-right" role="form" method="POST" action="singed.php">
+				<div class="form-group">
+					<input type="text" name="username" placeholder="Username" class="form-control"></div>
+				<div class="form-group">
+					<input type="CNE" name="pwd" placeholder="Password" class="form-control"></div>
+				<button type="submit" name="submit" class="btn btn-success">Sign in</button>
+			</form>
+<?php } ?>
+			<!-- /.navbar-collapse -->
 		</div>
+
 		<!-- /.container-fluid -->
 	</nav>
+	<div>
+		<h1>Ici une image et qlq mote d'acuille</h1>
+	</div>
 
 </body>
 	<!-- Latest compiled and minified JavaScript -->

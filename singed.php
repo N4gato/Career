@@ -17,11 +17,12 @@ try {
 
 	if (isset($_POST['submit'])) {
 		$logmanager = new UserManager('tuto','users'); // log to the BD
-		$session = $logmanager->isUser($_POST['username'],$_POST['pwd']);
-		if ($session) {
+		$_SESSION['loged'] = $logmanager->isUser($_POST['username'],$_POST['pwd']);
+		if ($_SESSION['loged']) {
 			# code...
 			$_SESSION['username'] = $_POST['username'];
 			$_SESSION['pwd'] = $_POST['pwd']; 
+			$_SESSION['iduser'] = $logmanager->getidd($_POST['pwd']);
 		}
 	}
  ?>
@@ -41,6 +42,7 @@ try {
 	<title>Make your Career</title>
 </head>
 <body>
+
 	<nav class="navbar navbar-inverse" role="navigation">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -69,11 +71,11 @@ try {
 					<li class="dropdown">
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								Classed <b class="caret"></b>
+								Other Action <b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="#">Education</a>
+									<a href="singup.php">Sing Up</a>
 								</li>
 								<li>
 									<a href="#">Another action</a>
@@ -94,12 +96,12 @@ try {
 					</li>
 				</ul>
 <?php 
-if ($session) {
+if ($_SESSION['loged']) {
 	# code...
 ?>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="profile.php"><?php $logmanager->getn($_POST['pwd']); ?></a>
+						<a href="profile.php"><?php echo $_SESSION['username'] ?></a>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -131,6 +133,10 @@ if ($session) {
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
+<div>
+	<h1><?php echo $_SESSION['iduser']; ?></h1>
+</div>
+
 
 </body>
 	<!-- Latest compiled and minified JavaScript -->
