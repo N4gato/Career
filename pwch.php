@@ -28,8 +28,9 @@ try {
 		
 			
 			$_SESSION['pwd'] = $_POST['newpwd']; 
-			//$_SESSION['iduser'] = $logmanager->getidd($_POST['username']);
-			//echo $_SESSION['iduser'];
+$logmanager = new UserManager('tuto','users');
+			$_SESSION['iduser'] = $logmanager->getidd($_POST['username']);
+			echo $_SESSION['iduser'];
 
 			$bdd = new PDO('mysql:host=localhost;dbname=tuto','root','9obi9aT/now*',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 		
