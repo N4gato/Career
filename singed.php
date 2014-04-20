@@ -128,7 +128,7 @@ if ($_SESSION['loged']) {
 				</ul>
 			</div>
 			<?php
-}
+}else{ header("location:index.php"); }
  ?>
 
 			<!-- /.navbar-collapse -->
@@ -136,8 +136,7 @@ if ($_SESSION['loged']) {
 		<!-- /.container-fluid -->
 	</div>
 	<div>
-		<h1>
-			<?php echo $_SESSION['iduser']; ?></h1>
+
 	</div>
 
 </body>

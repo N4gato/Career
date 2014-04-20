@@ -58,10 +58,10 @@ class UserManager{
 
 	public function getidd($CNE){
 		$rep = $this->bdd->query("SELECT * FROM users WHERE CNE = '$CNE'");
-		while($donnees = $rep->fetch()){
-			echo $donnees['id'];
+		$donnees = $rep->fetch();
+			//echo $donnees['id'];
 
-		};
+	
 		return $donnees['id']	;
 				
 	}

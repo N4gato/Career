@@ -28,14 +28,14 @@ try {
 		
 			
 			$_SESSION['pwd'] = $_POST['newpwd']; 
-$logmanager = new UserManager('tuto','users');
-			$_SESSION['iduser'] = $logmanager->getidd($_POST['username']);
-			echo $_SESSION['iduser'];
 
 			$bdd = new PDO('mysql:host=localhost;dbname=tuto','root','9obi9aT/now*',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 		
-		$rep = $bdd->query("SELECT * FROM users where CNE = '$new'");
+		
 
+		$rep = $bdd->prepare("UPDATE users SET CNE = ?  where id = ?");
+
+		$rep->execute(array($_POST['newpwd'],$_SESSION['iduser']));
 		
 	}
 
