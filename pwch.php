@@ -2,9 +2,9 @@
 // On démarre la session AVANT d'écrire du code HTML
 session_start();
 
-$mail		= $_POST['mail'];
-$new 		 = $_POST['newpwd'];
-$confirme = $_POST['confirmepwd'];
+$mail		= mysql_real_escape_string($_POST['mail']);
+$new 		 = mysql_real_escape_string($_POST['newpwd']);
+$confirme = mysql_real_escape_string($_POST['confirmepwd']);
 
 
 // On s'amuse à créer quelques variables de session dans $_SESSION

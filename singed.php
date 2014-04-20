@@ -18,11 +18,11 @@ getMessage();
 
 	if (isset($_POST['submit'])) {
 		$logmanager = new UserManager('tuto','users'); // log to the BD
-		$_SESSION['loged'] = $logmanager->isUser($_POST['username'],$_POST['pwd']);
+		$_SESSION['loged'] = $logmanager->isUser(mysql_real_escape_string($_POST['username']),mysql_real_escape_string($_POST['pwd']));
 		if ($_SESSION['loged']) {
 			# code...
-			$_SESSION['username'] = $_POST['username'];
-			$_SESSION['pwd'] = $_POST['pwd']; 
+			$_SESSION['username'] = mysql_real_escape_string($_POST['username']);
+			$_SESSION['pwd'] = mysql_real_escape_string($_POST['pwd']); 
 			$_SESSION['iduser'] = $logmanager->getidd($_POST['pwd']);
 		}
 	}
@@ -100,48 +100,106 @@ getMessage();
 if ($_SESSION['loged']) {
 	# code...
 ?>
+				<!-- --------------------------------------------------------User name and manager-->
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active">
 						<a href="singed.php">
 							<?php echo $_SESSION['username'] ?></a>
 					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							Loged <b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="profile.php">Profile</a>
-							</li>
-							<li>
-								<a href="logout.php">Logout</a>
-							</li>
-							<li>
-								<a href="#">Change Password</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="#">Déactiver Mon Compte</a>
-							</li>
-						</ul>
+					<li>
+						<a href="#manager" data-uk-offcanvas>Action Manager</a>
 					</li>
 				</ul>
+			</li>
+
+			<!-- --------------------------------------------------------Manager-->
+			<div id="manager" class="uk-offcanvas">
+				<div class="uk-offcanvas-bar uk-offcanvas-bar-flip uk-offcanvas-bar-show">
+					<ul class="uk-nav uk-nav-offcanvas" data-uk-nav>
+
+						<li class="uk-active">
+							<a href="">Action Manager</a>
+						</li>
+
+						<li class="uk-parent">
+							<a href="logout.php">Log out</a>
+						</li>
+
+						<li class="uk-parent">
+							<a href="#mdpch" data-uk-modal>Change Password</a>
+						</li>
+
+						<li>
+							<a href="">Item</a>
+						</li>
+
+						<li class="uk-nav-header">Header</li>
+						<li class="uk-parent">
+							<a href=""> <i class="uk-icon-star"></i>
+								Parent
+							</a>
+						</li>
+						<li>
+							<a href=""> <i class="uk-icon-twitter"></i>
+								Item
+							</a>
+						</li>
+						<li class="uk-nav-divider"></li>
+						<li>
+							<a href="">
+								<i class="uk-icon-rss"></i>
+								Item
+							</a>
+						</li>
+					</ul>
+				</div>
 			</div>
-			<?php
-}else{ header("location:index.php"); }
+			<!-- --------------------------------------------------------Change password-->
+			<div id="mdpch" class="uk-modal">
+				<div class="uk-modal-dialog">
+					<a class="uk-modal-close uk-close"></a>
+
+					<form action="pwch.php" method="POST">
+						<h1>Change your password</h1>
+						<br />
+						<br />
+						<input class="form-control input-sm" type="text" value="<?php echo $_SESSION['username'] ?>
+						" placeholder="UserName">
+						<br />
+						<input class="form-control input-sm" type="text" name="mail" id="maillll" placeholder="Mail" onblur="maile(this.id)">
+
+						<small>You gonna receive a message</small>
+						<br />
+						<br />
+
+						<input class="form-control input-sm" id="newpwd" name="newpwd" type="password" placeholder="New password">
+						<br />
+
+						<input class="form-control input-sm" id="confirmepwd" name="confirmepwd" type="password" placeholder="Confirme password">
+						<br />
+
+						<br />
+						<br />
+						<input type="submit" name="submit2" class="btn btn-primary btn-sm" onmousemove="password()" value="Change Now"></form>
+				</div>
+			</div>
+
+		</div>
+		<?php
+}else{ 
+	$_SESSION['flash'] = true;
+	header("location:index.php");}
  ?>
 
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container-fluid -->
+		<!-- /.navbar-collapse -->
 	</div>
-	<div>
-
-	</div>
+	<!-- /.container-fluid -->
+</div>
+<div></div>
 
 </body>
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	<script src="js/uikit.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="js/uikit.min.js"></script>
 </html>
