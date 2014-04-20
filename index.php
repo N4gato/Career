@@ -1,9 +1,18 @@
 <?php 
 // On démarre la session AVANT d'écrire du code HTML
 session_start();
-// On s'amuse à créer quelques variables de session dans $_SESSION
-?>
 
+// On s'amuse à créer quelques variables de session dans $_SESSION
+// Start a Session
+if( !session_id() ) @session_start();
+
+// Include and Instantiate the Class
+require_once('flash/class.messages.php');
+$msg = new Messages();
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +29,10 @@ session_start();
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
 	<link rel="stylesheet" href="css/tree.css">
+	<link rel="stylesheet" href="flash/style.css">
+
+	
+
 	<title>Make your Career</title>
 </head>
 <body>
@@ -170,8 +183,7 @@ session_start();
 
 						<br />
 						<br />
-						<input type="submit" name="submit2" class="btn btn-primary btn-sm" onmousemove="password()" value="Change Now">
-					</form>
+						<input type="submit" name="submit2" class="btn btn-primary btn-sm" onmousemove="password()" value="Change Now"></form>
 				</div>
 			</div>
 
@@ -179,6 +191,7 @@ session_start();
 		<?php
 }else{
  ?>
+
 		<ul class="nav navbar-nav navbar-right">
 			<li>
 
@@ -198,6 +211,19 @@ session_start();
 	<!-- /.container-fluid -->
 </div>
 <article>
+	<?php 
+if (isset($_SESSION['flash'])) {
+	if ($_SESSION['flash']) {
+				# code...
+		// Now you can add messages
+		$msg->add('e', 'Fail To Authentificate');
+		echo $msg->display();
+		$_SESSION['flash'] = false;
+		# code...
+	}
+
+}
+ ?>
 	<div class="acc">
 
 		<div class="subacc">
@@ -223,22 +249,22 @@ session_start();
 					<div class="uk-panel">Regestration</div>
 
 					<div class="uk-panel">
-						<form action="">
+						<form action="reg.php" method="POST">
 							<fieldset>
 								<legend></legend>
 							</fieldset>
 							<br />
 							<br />
 							<br />
-							<input class="form-control input-sm" type="text" placeholder="Name">
+							<input class="form-control input-sm"  name="reg_name" type="text" placeholder="Name">
 							<br />
-							<input class="form-control input-sm" type="text" placeholder="Prenom">
+							<input class="form-control input-sm"  name="reg_prenom" type="text" placeholder="Prenom">
 							<br />
-							<input class="form-control input-sm" type="text" placeholder="Mail">
+							<input class="form-control input-sm"  name="reg_mail" type="text" placeholder="Mail">
 							<br />
-							<input class="form-control input-sm" type="text" placeholder="CNE = mdp">
+							<input class="form-control input-sm"  name="reg_CNE" type="text" placeholder="CNE = mdp">
 							<br />
-							<input class="form-control input-sm" type="text" placeholder="UserName">
+							<input class="form-control input-sm"  name="reg_username" type="text" placeholder="UserName">
 							<br />
 
 							<button type="submit" class="btn btn-primary btn-sm">Small Regist</button>

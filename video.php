@@ -89,7 +89,7 @@ session_start();
 	if (isset($_SESSION['username']) && isset($_SESSION['pwd'])) {
 		# code...
 ?>
-
+				<!-- --------------------------------------------------------User name and manager-->
 				<ul class="nav navbar-nav navbar-right">
 					<li>
 						<a href="singed.php">
@@ -101,7 +101,7 @@ session_start();
 				</ul>
 			</li>
 
-			<!-- This is the off-canvas sidebar -->
+			<!-- --------------------------------------------------------Manager-->
 			<div id="manager" class="uk-offcanvas">
 				<div class="uk-offcanvas-bar uk-offcanvas-bar-flip uk-offcanvas-bar-show">
 					<ul class="uk-nav uk-nav-offcanvas" data-uk-nav>
@@ -111,39 +111,11 @@ session_start();
 						</li>
 
 						<li class="uk-parent">
-							<a href="#">Parent</a>
-							<div style="overflow: hidden; height: 0px; position: relative;">
-								<ul class="uk-nav-sub">
-									<li>
-										<a href="">Sub item</a>
-									</li>
-									<li>
-										<a href="">Sub item</a>
-										<ul>
-											<li>
-												<a href="">Sub item</a>
-											</li>
-											<li>
-												<a href="">Sub item</a>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</div>
+							<a href="logout.php">Log out</a>
 						</li>
 
 						<li class="uk-parent">
-							<a href="#">Parent</a>
-							<div style="overflow: hidden; height: 0px; position: relative;">
-								<ul class="uk-nav-sub">
-									<li>
-										<a href="">Sub item</a>
-									</li>
-									<li>
-										<a href="">Sub item</a>
-									</li>
-								</ul>
-							</div>
+							<a href="#mdpch" data-uk-modal>Change Password</a>
 						</li>
 
 						<li>
@@ -171,6 +143,36 @@ session_start();
 					</ul>
 				</div>
 			</div>
+			<!-- --------------------------------------------------------Change password-->
+			<div id="mdpch" class="uk-modal">
+				<div class="uk-modal-dialog">
+					<a class="uk-modal-close uk-close"></a>
+
+					<form action="pwch.php" method="POST">
+						<h1>Change your password</h1>
+						<br />
+						<br />
+						<input class="form-control input-sm" type="text" value="<?php echo $_SESSION['username'] ?>
+						" placeholder="UserName">
+						<br />
+						<input class="form-control input-sm" type="text" name="mail" id="maillll" placeholder="Mail" onblur="maile(this.id)">
+
+						<small>You gonna receive a message</small>
+						<br />
+						<br />
+
+						<input class="form-control input-sm" id="newpwd" name="newpwd" type="password" placeholder="New password">
+						<br />
+
+						<input class="form-control input-sm" id="confirmepwd" name="confirmepwd" type="password" placeholder="Confirme password">
+						<br />
+
+						<br />
+						<br />
+						<input type="submit" name="submit2" class="btn btn-primary btn-sm" onmousemove="password()" value="Change Now"></form>
+				</div>
+			</div>
+
 		</div>
 		<?php
 }else{
@@ -257,7 +259,8 @@ session_start();
 
 	<div class="uk-grid">
 		<div class="uk-width-medium-1-4">
-			<div class="uk-panel uk-panel-box uk-scrollspy-init-inview uk-scrollspy-inview uk-animation-fade" data-uk-scrollspy="{cls:'uk-animation-fade', repeat: true ,delay:1000}">
+			<div class="uk-panel uk-panel-box uk-scrollspy-init-inview uk-scrollspy-inview uk-animation-fade" 
+			data-uk-scrollspy="{cls:'uk-animation-fade', repeat: true ,delay:1000}">
 				<h3>Fade</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 			</div>
@@ -265,7 +268,8 @@ session_start();
 	</div>
 	<div class="uk-grid">
 		<div class="uk-width-medium-1-4 uk-push-1-4">
-			<div class="uk-panel uk-panel-box uk-scrollspy-init-inview uk-scrollspy-inview uk-animation-scale-up" data-uk-scrollspy="{cls:'uk-animation-scale-up', repeat: true ,delay:1000}">
+			<div class="uk-panel uk-panel-box uk-scrollspy-init-inview uk-scrollspy-inview uk-animation-scale-up" 
+			data-uk-scrollspy="{cls:'uk-animation-scale-up', repeat: true ,delay:1000}">
 				<h3>Scale up</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 			</div>

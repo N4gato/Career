@@ -11,20 +11,20 @@ class UserManager{
 
 	function __construct($db,$table){
 		# code...
+		
 		$this->table = $table;
 		$this->db = $db;
 		$this->connection();
 	}
 
 	public function insert(User $user){
-		//$this->connection();
 		$rep = $this->bdd->prepare('INSERT INTO users (name,prenom,mail,CNE,username,pwd,pwd_sh1) VALUES (:name,:prenom,:mail,:CNE,:username,:pwd,:pwd_sh1)');
 		$rep->execute(array(
 			'name' => $user->get_name(),
 			'prenom' => $user->get_prenom(),
 			'mail' => $user->get_mail(),
 			'CNE' => $user->get_CNE(),
-			'username' => $user->get_username(),
+			'username' => $user->get_usreName(),
 			'pwd' => $user->get_pwd(),
 			'pwd_sh1' => $user->get_pwdSh1()
 			));

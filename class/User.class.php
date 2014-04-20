@@ -16,24 +16,16 @@ class User
 	function __construct(array $info)
 	{
 		# code...
-		set_name($info['name']);
-		set_prenom($info['prenom']);
-		set_mail($info['mail']);
-		set_CNE($info['CNE']);
-		set_usreName($info['userName']);
-		set_pwd($info['pwd']);
-		set_pwdSh1($info['pwdSh1']);
+		self::set_name($info['name']);
+		self::set_prenom($info['prenom']);
+		self::set_mail($info['mail']);
+		self::set_CNE($info['CNE']);
+		self::set_usreName($info['userName']);
+		self::set_pwd($info['pwd']);
+		self::set_pwdSh1($info['pwdSh1']);
 
 	}
 	
-	
-
-
-
-
-
-
-
 
     /**
      * Gets the value of _name.
@@ -148,7 +140,7 @@ class User
      *
      * @return self
      */
-    public function set_usreName($_usrName)
+    public function set_usreName($_usreName)
     {
         $this->_usreName = $_usreName;
 
